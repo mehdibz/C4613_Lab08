@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>#{msgs.indexWindowTitle}</title>
+</h:head>
+<h:body>
+	<div id="wrapper">
+		<div id="header">
+			<div id="logo">
+				<h1>#{msgs.indexHeader1}</h1>
+				<p>#{msgs.indexHeader2}</p>
+			</div>
+			<div id="menu">
+				<ul>
+					<li class="first current_page_item"><a href="?">#{msgs.homeLabel}</a></li>
+					<li><a
+						href="http://download.oracle.com/docs/cd/E17802_01/j2ee/javaee/javaserverfaces/2.0/docs/pdldocs/jsp/index.html" target="_new">JSF tag</a></li>
+					<li><a
+						href="http://download.oracle.com/docs/cd/E17802_01/j2ee/javaee/javaserverfaces/2.0/docs/api/index.html" target="_new">JSF API</a></li>
+				</ul>
+			</div>
+
+		</div>
+		<!-- end #header -->
+		<div id="page">
+			<div id="page-bgtop">
+				<div id="page-bgbtm">
+					<div id="content">
+						<div class="post">
+							<h:outputText value="#{msgs.indexPageTitle}" styleClass="title" />
+							<div class="entry">
+								<h:form>
+									<h:panelGrid columns="3" style="calendar">#{msgs.distancePrompt}
+            							<h:inputText id="distance" value="#{unit.distance}" required="true" label="#{msgs.distancePrompt}" 
+            											converterMessage="#{msgs.distanceConverterMsg}"
+            											requiredMessage="#{msgs.requiredDistanceMsg}">
+            											
+											<f:validateDoubleRange minimum="#{msgs.distanceMin}"
+												maximum="${msgs.distanceMax}" />
+										</h:inputText>
+										<h:message for="distance" errorClass="errors" />
+										#{msgs.measuringUnitPrompt}
+            							<h:selectOneRadio required="true" id="measuringUnit"
+											value="#{unit.measureUnit}"
+											label="#{msgs.measuringUnitPrompt}"
+											requiredMessage="#{msgs.requiredUnitMsg}">
+											<f:selectItem itemLabel="#{msgs.miles}" itemValue="mi" />
+											<f:selectItem itemLabel="#{msgs.kilometers}" itemValue="km" />
+										</h:selectOneRadio>
+										<h:message for="measuringUnit" errorClass="errors" />
+
+									</h:panelGrid>
+									<h:commandButton value="#{msgs.submitPrompt}"
+										actionListener="#{unit.handleConvertClick}" action="index" />
+								</h:form>
+
+								<br />
+								<br />
+								<h3>
+									<h:outputText value="#{unit.distanceConvert}"
+										styleClass="success" />
+								</h3>
+							</div>
+						</div>
+						<div style="clear: both;">&nbsp;</div>
+					</div>
+					<!-- end #content -->
+					<div style="clear: both;">&nbsp;</div>
+				</div>
+			</div>
+		</div>
+		<!-- end #page -->
+	</div>
+	<div id="footer">
+		<p align="right">#{msgs.footer}</p>
+	</div>
+</h:body>
+</html>
